@@ -111,7 +111,7 @@ const Employee = () => {
   const clearForm = () => {
     setDealerCode("");
     setUserName("");
-    setSelectedDepartment("");
+    setSelectedDepartment(""); // Corrected spelling
     setPan("");
     setMobile("");
     setPinCode("");
@@ -147,122 +147,113 @@ const Employee = () => {
   );
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gradient-to-r from-blue-50 to-blue-200">
-      <div className="bg-white rounded-lg shadow-lg w-full max-w-2xl p-8">
-      <div className="flex justify-center">
-  <h1 className="text-3xl font-bold text-gray-700 bg-blue-100 px-4 py-2 rounded-md inline-block mb-4">
-    Employee Details
-  </h1>
-</div>
+    <>
+      <h1 className=" flex justify-center text-red-500 text-2xl">
+        ADD Employee
+      </h1>
+      <div className=" flex justify-center items-center">
+        <CommonInput
+          inputLabel={"Dealer Code: "}
+          inputPlaceholder={"Dealer Code"}
+          inputValue={delearCode}
+          monitorState={(e) => setDealerCode(e.target.value)}
+        />
 
+        <label>Department: </label>
+        <select
+          id="depStatus"
+          className=" h-auto border-2 border-black rounded-lg w-auto ml-2"
+          value={selectedDepartment}
+          onChange={(e) => setSelectedDepartment(e.target.value)} // Corrected spelling
+        >
+          <option value="">Select Department</option>
+          {departmentValue.map((val, index) => (
+            <option value={val} key={index}>
+              {val}
+            </option>
+          ))}
+        </select>
+      </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-            <CommonInput
-              inputLabel={"Dealer Code: "}
-              inputPlaceholder={"Dealer Code"}
-              inputValue={delearCode}
-              monitorState={(e) => setDealerCode(e.target.value)}
-              className="flex-1 mb-2 md:mb-0 md:mr-2"
-            />
+      {/* Second row */}
+      <div className=" flex justify-center items-center w-full">
+        <CommonInput
+          inputLabel={"Name: "}
+          inputPlaceholder={"Name"}
+          inputValue={userName}
+          monitorState={(e) => setUserName(e.target.value)}
+        />
+        <CommonInput
+          inputLabel={"PAN: "}
+          inputPlaceholder={"pan"}
+          inputValue={pan}
+          monitorState={(e) => setPan(e.target.value)}
+        />
+      </div>
 
-            <label className="mr-2">Department:</label>
-            <select
-              id="depStatus"
-              className="border-2 border-black rounded-lg ml-2 h-auto w-32" // Smaller width for the select box
-              value={selectedDepartment}
-              onChange={(e) => setSelectedDepartment(e.target.value)}
-            >
-              <option value="">Select</option>
-              {departmentValue.map((val, index) => (
-                <option value={val} key={index}>
-                  {val}
-                </option>
-              ))}
-            </select>
-          </div>
+      {/* Third row */}
+      <div className=" flex justify-center items-center w-full">
+        <CommonInput
+          inputLabel={"Mobile: "}
+          inputPlaceholder={"Mobile"}
+          inputValue={mobile}
+          monitorState={(e) => setMobile(e.target.value)}
+        />
+        <CommonInput
+          inputLabel={"Pin Code: "}
+          inputPlaceholder={"pin code"}
+          inputValue={pinCode}
+          monitorState={(e) => setPinCode(e.target.value)}
+        />
+      </div>
 
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-            <CommonInput
-              inputLabel={"Name: "}
-              inputPlaceholder={"Name"}
-              inputValue={userName}
-              monitorState={(e) => setUserName(e.target.value)}
-              className="flex-1 mb-2 md:mb-0 md:mr-2"
-            />
-            <CommonInput
-              inputLabel={"PAN: "}
-              inputPlaceholder={"PAN"}
-              inputValue={pan}
-              monitorState={(e) => setPan(e.target.value)}
-              className="flex-1"
-            />
-          </div>
+      {/* Fourth row */}
+      <div className=" flex justify-center items-center w-full">
+        <CommonInput
+          inputLabel={"Email: "}
+          inputPlaceholder={"email"}
+          inputValue={email}
+          monitorState={(e) => setEmail(e.target.value)}
+        />
+        <CommonInput
+          inputLabel={"Address: "}
+          inputPlaceholder={"address"}
+          inputValue={address}
+          monitorState={(e) => setAddress(e.target.value)}
+        />
+      </div>
 
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-            <CommonInput
-              inputLabel={"Mobile: "}
-              inputPlaceholder={"Mobile"}
-              inputValue={mobile}
-              monitorState={(e) => setMobile(e.target.value)}
-              className="flex-1 mb-2 md:mb-0 md:mr-2"
-            />
-            <CommonInput
-              inputLabel={"Pin Code: "}
-              inputPlaceholder={"Pin Code"}
-              inputValue={pinCode}
-              monitorState={(e) => setPinCode(e.target.value)}
-              className="flex-1"
-            />
-          </div>
+      <div className=" flex justify-center items-center mt-4">
+        <CommonBtn btnName={"Save"} btnClick={handleSubmit} />
+        <CommonBtn btnName={"Cancel"} btnClick={handleCancel} />
+      </div>
 
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-            <CommonInput
-              inputLabel={"Email: "}
-              inputPlaceholder={"Email"}
-              inputValue={email}
-              monitorState={(e) => setEmail(e.target.value)}
-              className="flex-1 mb-2 md:mb-0 md:mr-2"
-            />
-            <CommonInput
-              inputLabel={"Address: "}
-              inputPlaceholder={"Address"}
-              inputValue={address}
-              monitorState={(e) => setAddress(e.target.value)}
-              className="flex-1"
-            />
-          </div>
+      {/* Sort Button and Search Input */}
+      <div className=" flex justify-center items-center mt-4">
+        <CommonBtn
+          btnName={isSortedAsc ? "Sort by Name (Asc)" : "Sort by Name (Desc)"}
+          btnClick={sortByName}
+        />
+        <input
+          type="text"
+          placeholder="Search..."
+          className="border-2 border-black rounded-lg ml-4 p-2"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </div>
 
-          <div className="flex justify-center items-center mt-4">
-            <CommonBtn btnName={"Add"} btnClick={handleSubmit} />
-            <CommonBtn btnName={"Remove"} btnClick={handleCancel} />
-          </div>
+      <TabelEmployee employeeDetails={filteredEmployees} />
 
-          <div className="flex justify-center items-center mt-4">
-            <CommonBtn
-              btnName={isSortedAsc ? "Sort by Name (Asc)" : "Sort by Name (Desc)"}
-              btnClick={sortByName}
-            />
-            <input
-              type="text"
-              placeholder="Search..."
-              className="border-2 border-black rounded-lg ml-4 p-2 flex-1 md:max-w-xs"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-        </form>
-
-        <TabelEmployee employeeDetails={filteredEmployees} />
-
-        <div className="flex justify-center items-center mt-4">
+      <div>
+        <div className=" flex justify-center items-center mt-4">
           <CommonBtn
-            btnName={"Department"}
+            btnName={"To Department"}
             btnClick={navigateToDepartment}
           />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

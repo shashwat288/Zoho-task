@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Employee from "../components/Employee";
 import MainComponent from "../components/MainComponent";
 
-const Router = () => {
+const PageRouter = () => {
   const routes = createBrowserRouter([
     {
       path: "/",
@@ -22,4 +22,4 @@ const Router = () => {
   );
 };
 
-export default Router;
+export default PageRouter;

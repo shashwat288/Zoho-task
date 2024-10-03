@@ -1,11 +1,10 @@
 import "./App.css";
-import Router from "./Router/Router";
-
+import PageRouter from "./PageRouter/PageRouter";
 
 function App() {
   return (
     <div className="App">
-      <Router/>
+      <PageRouter />
     </div>
   );
 }

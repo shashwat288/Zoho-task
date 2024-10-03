@@ -6,7 +6,6 @@ import Tabel from "./Table";
 const Department = ({ setDepartmentList, navigateEmployee }) => {
   const [deptCode, setDepCode] = useState("");
   const [deptName, setDeptName] = useState("");
-
   const [departmentTableList, setDepartmentTableList] = useState(
     JSON.parse(localStorage.getItem("departmentTableList")) || []
   );
@@ -61,49 +60,34 @@ const Department = ({ setDepartmentList, navigateEmployee }) => {
   };
 
   return (
-    <div className="-mt-7 h-screen bg-gradient-to-r from-blue-50 to-blue-200 flex justify-center items-center p-6">
-      <div className="bg-white rounded-lg shadow-lg w-full max-w-2xl p-8">
-        <div className="text-center mb-6">
-          <h1 className="text-3xl font-bold text-gray-700 bg-blue-100 px-4 py-2 rounded-md inline-block">Department Details
-          </h1>
-        </div>
-        <form onSubmit={addDepartment} className="space-y-4">
-          <div className="flex justify-between">
-            <CommonInput
-              inputPlaceholder="Department Code"
-              inputValue={deptCode}
-              monitorState={(e) => setDepCode(e.target.value)}
-              className="w-1/2 mr-4 shadow-sm rounded-md"
-            />
-            <CommonInput
-              inputPlaceholder="Department Name"
-              inputValue={deptName}
-              monitorState={(e) => setDeptName(e.target.value)}
-              className="w-1/2 shadow-sm rounded-md"
-            />
-          </div>
-          <div className="flex justify-center mt-6">
-            <CommonBtn
-              btnName="Add Details"
-              btnClick={addDepartment}
-              className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md shadow-md"
-            />
-          </div>
-        </form>
-
-        <div className="mt-8">
-          <Tabel departmentTableList={departmentTableList} />
-        </div>
-
-        <div className="flex justify-center mt-8">
-          <CommonBtn
-            btnName="Employee Details"
-            btnClick={navigateEmployee}
-            className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md shadow-md"
-          />
-        </div>
+    <>
+      <div className="flex justify-center items-center">
+        <h1 className="flex justify-center text-red-500 text-2xl">
+          ADD Department
+        </h1>
       </div>
-    </div>
+      <div className="flex justify-center items-center">
+        <CommonInput
+          inputPlaceholder={"Department Code"}
+          inputValue={deptCode}
+          monitorState={(e) => setDepCode(e.target.value)}
+        />
+        <CommonInput
+          inputPlaceholder={"Department Name"}
+          inputValue={deptName}
+          monitorState={(e) => setDeptName(e.target.value)}
+        />
+        <CommonBtn btnName={"ADD"} btnClick={addDepartment} />
+      </div>
+      <Tabel departmentTableList={departmentTableList} />
+
+      <div className="flex justify-center items-center">
+        <CommonBtn
+          btnName={"To Employee Details"}
+          btnClick={navigateEmployee}
+        />
+      </div>
+    </>
   );
 };
 
